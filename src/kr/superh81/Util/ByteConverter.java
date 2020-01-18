@@ -1,6 +1,7 @@
 package kr.superh81.Util;
 
 import java.util.Base64;
+import java.util.regex.Pattern;
 
 public class ByteConverter {
     /**
@@ -33,6 +34,7 @@ public class ByteConverter {
      */
     public static byte[] hexToByte(String data) {
         try {
+            data = Pattern.compile("\\s").matcher(data).replaceAll("");
             int i, offset = 1, len = data.length();
             byte[] ret = new byte[(len + 1) / 2];
 
@@ -122,6 +124,7 @@ public class ByteConverter {
      *
      * @param data           byte array
      * @param urlSafe        flag for url safe Base64 encoding
+     *                       If it is true, 'withoutPadding' will be true regardless of the input.
      * @param withoutPadding flag for no padding
      * @return Base64 encoded String
      */
@@ -133,7 +136,7 @@ public class ByteConverter {
             else
                 encoder = Base64.getEncoder();
 
-            if (withoutPadding)
+            if (urlSafe || withoutPadding)
                 encoder = encoder.withoutPadding();
 
             return encoder.encodeToString(data);
