@@ -33,7 +33,6 @@ public class ByteConverterTest {
         if( testAssertNull ) {
             assertNull(ByteConverter.hexToByte(null));
         }
-
     }
 
     @Test

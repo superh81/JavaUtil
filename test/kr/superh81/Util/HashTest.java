@@ -14,36 +14,36 @@ public class HashTest {
 
     // https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Standards-and-Guidelines/documents/examples/SHA256.pdf
     // https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Standards-and-Guidelines/documents/examples/SHA512.pdf
-    String shaInput = "abc";
-    byte[] shaInputByte;
-    String sha256Hex = "BA7816BF 8F01CFEA\n" +
+    private String shaInput = "abc";
+    private byte[] shaInputByte;
+    private String sha256Hex = "BA7816BF 8F01CFEA\n" +
             "414140DE 5DAE2223 B00361A3 96177A9C B410FF61 F20015AD";
-    byte[] sha256Byte;
-    String sha256Base64;
-    String sha512Hex = "DDAF35A1 93617ABA CC417349 AE204131\n" +
+    private byte[] sha256Byte;
+    private String sha256Base64;
+    private String sha512Hex = "DDAF35A1 93617ABA CC417349 AE204131\n" +
             "12E6FA4E 89A97EA2 0A9EEEE6 4B55D39A 2192992A 274FC1A8\n" +
             "36BA3C23 A3FEEBBD 454D4423 643CE80E 2A9AC94F A54CA49F ";
-    byte[] sha512Byte;
-    String sha512Base64;
+    private byte[] sha512Byte;
+    private String sha512Base64;
 
     // https://tools.ietf.org/html/rfc4231#section-4.3
-    String hmacInput = "what do ya want for nothing?";
-    byte[] hmacInputByte;
-    String hmacKey = "Jefe";
-    byte[] hmacKeyByte;
-    String hmac256Hex = "5bdcc146bf60754e6a042426089575c7\n" +
+    private String hmacInput = "what do ya want for nothing?";
+    private byte[] hmacInputByte;
+    private String hmacKey = "Jefe";
+    private byte[] hmacKeyByte;
+    private String hmac256Hex = "5bdcc146bf60754e6a042426089575c7\n" +
             "                  5a003f089d2739839dec58b964ec3843";
-    byte[] hmac256Byte;
-    String hmac256Base64;
-    String hmac512Hex = "164b7a7bfcf819e2e395fbe73b56e0a3\n" +
+    private byte[] hmac256Byte;
+    private String hmac256Base64;
+    private String hmac512Hex = "164b7a7bfcf819e2e395fbe73b56e0a3\n" +
             "                  87bd64222e831fd610270cd7ea250554\n" +
             "                  9758bf75c05a994a6d034f65f8f0e6fd\n" +
             "                  caeab1a34d4a6b4b636e070a38bce737";
-    byte[] hmac512Byte;
-    String hmac512Base64;
+    private byte[] hmac512Byte;
+    private String hmac512Base64;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         shaInputByte = shaInput.getBytes(StandardCharsets.UTF_8);
         sha256Byte = ByteConverter.hexToByte(sha256Hex);
         sha256Base64 = Base64.getEncoder().encodeToString(sha256Byte);
@@ -63,7 +63,7 @@ public class HashTest {
         assertArrayEquals(sha256Byte, Hash.sha256(shaInputByte));
         assertEquals(sha256Base64, Hash.sha256(shaInput, Base64.getEncoder()));
 
-        if( testAssertNull ) {
+        if (testAssertNull) {
             assertNull(Hash.sha256(null));
             assertNull(Hash.sha256(null, null));
         }
@@ -74,7 +74,7 @@ public class HashTest {
         assertArrayEquals(sha512Byte, Hash.sha512(shaInputByte));
         assertEquals(sha512Base64, Hash.sha512(shaInput, Base64.getEncoder()));
 
-        if( testAssertNull ) {
+        if (testAssertNull) {
             assertNull(Hash.sha512(null, null));
         }
     }
@@ -84,7 +84,7 @@ public class HashTest {
         assertArrayEquals(hmac256Byte, Hash.hmacSha256(hmacInputByte, hmacKeyByte));
         assertEquals(hmac256Base64, Hash.hmacSha256(hmacInput, hmacKey, Base64.getEncoder()));
 
-        if( testAssertNull ) {
+        if (testAssertNull) {
             assertNull(Hash.hmacSha256(null, null));
             assertNull(Hash.hmacSha256(hmacInputByte, null));
             assertNull(Hash.hmacSha256(hmacInput, hmacKey, null));
@@ -96,7 +96,7 @@ public class HashTest {
         assertArrayEquals(hmac512Byte, Hash.hmacSha512(hmacInputByte, hmacKeyByte));
         assertEquals(hmac512Base64, Hash.hmacSha512(hmacInput, hmacKey, Base64.getEncoder()));
 
-        if( testAssertNull ) {
+        if (testAssertNull) {
             assertNull(Hash.hmacSha512(hmacInput, hmacKey, null));
         }
     }
