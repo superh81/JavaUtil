@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
 
+@SuppressWarnings("WeakerAccess")
 public class Hash {
     /**
      * (Internal) Computes hash using given algorithm

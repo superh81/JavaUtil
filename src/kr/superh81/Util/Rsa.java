@@ -12,6 +12,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
+@SuppressWarnings("WeakerAccess")
 public class Rsa {
     /**
      * Gets RSA private key from PEM-encoded PKCS#8 private key

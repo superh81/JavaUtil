@@ -3,6 +3,7 @@ package kr.superh81.Util;
 import java.util.Base64;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("WeakerAccess")
 public class ByteConverter {
     /**
      * Converts char array to byte array
